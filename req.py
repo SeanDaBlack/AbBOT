@@ -2,8 +2,12 @@ from selenium import webdriver
 import requests
 import random
 import time
+from sys import platform
 
-chromedriver_location = "./chromedriver"
+if platform == "win32":
+    chromedriver_location = "./chromedriver.exe"
+else:
+    chromedriver_location = "./chromedriver"
 
 url = 'https://prolifewhistleblower.com/anonymous-form/'
 

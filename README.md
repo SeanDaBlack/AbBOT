@@ -6,7 +6,7 @@ sc.js is a the base of the ios shortcut
 
 # Setup
 
-On mac:
+## On mac OSX, Windows, and Linux:
 
 `pip install -r requirements.txt`
 
@@ -22,9 +22,13 @@ It needs to be found in your `PATH` variable.
 
 `export PATH=$PATH:$(pwd)`
 
+## On mac OSX:
 You might also get a trust issue with the downloaded driver being unverified. To fix that, run 
 
 `xattr -d com.apple.quarantine chromedriver`
+
+## On Windows:
+You might also get a firewall notification notification. To fix either select accept on the notification, or manual add a a firewall rule by navigating to `"Allow an app through firewall"` and adding the full path of the `chromedriver.exe` file.
 
 this just tells the OS it's safe to use this driver, and Selenium will start working. See https://timonweb.com/misc/fixing-error-chromedriver-cannot-be-opened-because-the-developer-cannot-be-verified-unable-to-launch-the-chrome-browser-on-mac-os/ for more info.
 
