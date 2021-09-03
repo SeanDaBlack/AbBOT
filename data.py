@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 import random
 import time
+import json
 from faker import Faker
 
 fake = Faker('en-US')
+
+
 
 words = [
   'The', 'he', 'at', 'but', 'there', 'of', 'was', 'be', 'not', 'use', 'and', 'for', 'this', 'what', 'an', 'a', 'on', 'have', 'all', 'each',
@@ -11,21 +14,8 @@ words = [
   'how', 'that', 'they', 'by', 'can', 'their', 'it', 'I', 'word', 'said', 'if'
 ]
 
-cities = {
-  'Arlington': 'Tarrant County',
-  'Austin': 'Travis County',
-  'Corpus Christi': 'Nueces County',
-  'Dallas': 'Collin County',
-  'El Paso': 'El Paso County',
-  'Fort Worth': 'Denton County',
-  'Garland': 'Collin County',
-  'Houston': 'Fort Bend County',
-  'Irving': 'Dallas County',
-  'Laredo': 'Webb County',
-  'Lubbock': 'Lubbock County',
-  'Plano': 'Collin County',
-  'San Antonio': 'Bexar County'
-}
+with open('cities.json') as fp:
+  cities = json.load(fp)
 
 gop_members = [
   'Gary VanDeaver', 'Bryan Slaton', 'Cecil Bell Jr.', 'Keith Bell', 'Cole Hefner', 'Matt Schaefer', 'Jay Dean', 'Cody Harris',
