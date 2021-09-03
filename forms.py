@@ -1,18 +1,27 @@
+from requests_toolbelt import MultipartEncoder
 import requests
-import dns.resolver
 import data
+import redirection
 
-target_ip = dns.resolver.resolve('prolifewhistleblower.com', 'A').response.answer[0].to_text()[len('prolifewhistleblower.com. 0 IN A '):]
 anonymous_form_data = data.anonymous_form()
 
 def anonymous_form(token):
 	headers = {
-		'Content-Type': 'application/x-www-form-urlencoded',
-		'DNT': '1',
-		'Origin': 'https://prolifewhistleblower.com',
-		'Referer': 'https://prolifewhistleblower.com/anonymous-form/',
-		'Upgrade-Insecure-Requests': '1',
-		'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.58 Safari/537.36',
+    'authority': 'prolifewhistleblower.com',
+    'sec-ch-ua': '"Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"',
+    'accept': '*/*',
+    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundarymzEZsVNq7gOZvSGA',
+    'x-requested-with': 'XMLHttpRequest',
+    'sec-ch-ua-mobile': '?0',
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
+    'sec-ch-ua-platform': '"Linux"',
+    'origin': 'https://prolifewhistleblower.com',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-dest': 'empty',
+    'referer': 'https://prolifewhistleblower.com/anonymous-form/',
+    'accept-language': 'en-US,en;q=0.9',
+    'cookie': 'sucuri_cloudproxy_uuid_983586173=ebf1582f789f61d67345a0786a519292; _ga=GA1.1.1279513551.1630646088; hustle_module_show_count-social_sharing-1=3; _ga_M5WWGNMLR8=GS1.1.1630646087.1.1.1630646164.0',
 	}
 
 	data = {
@@ -28,7 +37,7 @@ def anonymous_form(token):
 		'hidden-1': 'IP address',
 		'referer_url': 'https://prolifewhistleblower.com/anonymous-form/',
 		'forminator_nonce': 'dde67b9a73',
-		'_wp_http_referer': '/anonymous-form/',
+		'_wp_https_referer': '/anonymous-form/',
 		'form_id': '26',
 		'page_id': '27',
 		'form_type': 'default',
@@ -41,63 +50,19 @@ def anonymous_form(token):
 	generated_data = next(anonymous_form_data)
 	for key in generated_data:
 		data[key] = generated_data[key]
+	encoded_data = MultipartEncoder(fields=data)
 
-	print(data)
+	redirection.end_redirect()
 	try:
-		requests.post('https://{}/anonymous-form'.format(target_ip), headers=headers, data=data)
+		response = requests.post('https://prolifewhistleblower.com/wp-admin/admin-ajax.php', headers=headers, data=encoded_data)
+		print('Successfully sent submitted form.')
+		print(response)
+		print(response.headers)
+		print(response.text)
 	except Exception as e:
 		print('Had an issue.')
 		print(e)
+	redirection.redirect()
 
 def sign_up_page(token):
-	headers = {
-		'Content-Type': 'application/x-www-form-urlencoded',
-		'DNT': '1',
-		'Origin': 'https://prolifewhistleblower.com',
-		'Referer': 'https://prolifewhistleblower.com/sign-up-page/',
-		'Upgrade-Insecure-Requests': '1',
-		'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.58 Safari/537.36',
-	}
-
 	raise NotImplementedError()
-	# TODO: Add randomization of filled out data
-	data = [
-		('name-1', 'Name'),
-		('address-1-street_address', 'Street Address'),
-		('address-1-address_line', ''),
-		('address-1-city', 'City'),
-		('address-1-state', 'Texas'),
-		('address-1-zip', 'ZIP'),
-		('address-1-country', 'United States of America (USA)'),
-		('phone-1', 'Phone'),
-		('email-1', 'email@email.com'),
-		('text-1', 'Job'),
-		('text-2', 'Employer'),
-		('radio-1', 'no'),
-		('text-3', ''),
-		('checkbox-2[]', 'other'),
-		('radio-2', 'yes'),
-		('text-4', 'Fake Organization'),
-		('checkbox-4[]', 'plaintiff'),
-		('checkbox-4[]', 'other'),
-		('radio-3', 'yes'),
-		('time-1-hours', '10'),
-		('time-1-minutes', '30'),
-		('time-1-ampm', 'am'),
-		('textarea-1', 'Violation of the heartbeat act'),
-		('g-recaptcha-response', token),
-		('hidden-1', '98.218.129.19'),
-		('referer_url', 'https://prolifewhistleblower.com/anonymous-form/'),
-		('forminator_nonce', 'dde67b9a73'),
-		('_wp_http_referer', '/sign-up-page/'),
-		('form_id', '25'),
-		('page_id', '32'),
-		('form_type', 'default'),
-		('current_url', 'https://prolifewhistleblower.com/'),
-		('render_id', '0'),
-		('action', 'forminator_submit_form_custom-forms'),
-		('input_18', ''),
-	]
-
-	response = requests.post('https://{}/sign-up-page'.format(target_ip), headers=headers, data=data)
-

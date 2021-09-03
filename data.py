@@ -130,10 +130,10 @@ def anonymous_form():
 			'text-6': 'Dr. ' + random.choice(lastNames),
 			'text-2': city,
 			'text-3': 'Texas',
-			'text-4': random.randint(10000, 99999),
+			'text-4': str(random.randint(10000, 99999)),
 			'text-5': county,
 			'hidden-1': random.choice(ips) + str(random.randint(0,255)),
-			'checkbox-1[]': random.choice([True, False]),
+			'checkbox-1[]': 'yes' if random.choice([True, False]) else 'no',
 		}
 		yield form_data
 
