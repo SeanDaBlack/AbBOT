@@ -8,6 +8,15 @@ words = [
   'how', 'that', 'they', 'by', 'can', 'their', 'it', 'I', 'word', 'said', 'if'
 ]
 
+hatePhrase = [
+    ' I wouldn\'t breath the same air.',                    ' I wouldn\'t touch them with a ten-foot pole!',
+    ' I unfortunately won\'t be voting red for a while.',   ' I\'m sick to my stomach just thinking about it.',
+    ' Oh, that makes my skin crawl!',                       ' I think it\'s quite nauseating!',
+    ' "You shall not murder." Exodus 20:13',                ' Shame on these monsters!',
+    ' "Children are a heritage from the LORD, offspring a reward from him." Psalm 127:3',
+    ' "Like arrows in the hands of a warrior are children born in one’s youth." Psalm 127:4', '',
+]
+
 cities = {
   'Arlington': 'Tarrant County',
   'Austin': 'Travis County',
@@ -32,6 +41,7 @@ gop_members = [
   'Jeff Cason', 'Matt Krause', 'Tony Tinderholt', 'David Cook', 'Craig Goldman', 'Giovanni Capriglione', 'Charlie Geren', 'Sam Harless',
   'Dan Huberty', 'Briscoe Cain', 'Dennis Paul', 'Tom Oliverson', 'Mike Schofield'
 ]
+
 firstNames = ['Hannah', 'Olivia', 'Marcia', 'Sarah', 'Tara', 'Brooke', 'Wanda', 'Andrea', 'Julie']
 lastNames = ['Morgan', 'Walker', 'Lewis', 'Butler', 'Jones', 'Barnes', 'Martin', 'Wright', 'Foster']
 
@@ -73,9 +83,9 @@ def anonymous_form():
     zipCode = random.choice(zipDict.get(f'{list(cities)[cityNum-1]}Zips'))
     form_data = {
       'textarea-1': random.choice(gop_members) + ' took their mistress ' + random.choice(firstNames) + ' ' + random.choice(lastNames) +
-      ' to get an abortion after their affair.',
+      ' to get an abortion after their affair.' + random.choice(list(hatePhrase)),
       'text-1': random.choice(info_location),
-      'text-6': 'Dr. ' + random.choice(lastNames),
+      'text-6': 'Dr. ' + (random.choice(list(gop_members))[0] if random.choice([True, False]) else random.choice(list(firstNames))) + ' ' + random.choice(lastNames),
       'text-2': city,
       'text-3': 'Texas',
       'text-4': zipCode,
