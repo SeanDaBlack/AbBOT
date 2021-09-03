@@ -22,3 +22,4 @@ This Chromium extension prefills the pro-life whistleblower form with garbage da
 ## Modifying
 
 If you add or remove files within `./src`, run `node ./remanifest.js` to make sure `manifest.json` is kept up-to-date, otherwise, you'll get script permission errors.
+
