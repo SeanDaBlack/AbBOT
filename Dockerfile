@@ -31,4 +31,6 @@ COPY sc.js ./
 
 RUN pip3 install -r requirements.txt
 
+RUN export PATH=$PATH:/usr/bin/chromedriver
+
 CMD ["python3", "req.py"]
