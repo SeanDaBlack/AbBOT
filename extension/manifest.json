@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Extension name",
+  "version": "0.0.1",
+  "browser_action": {},
+  "content_scripts": [
+    {
+      "matches": [
+        "https://prolifewhistleblower.com/anonymous-form/"
+      ],
+      "js": [
+        "extension.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "src/index.js",
+    "src/randomName.js",
+    "src/randomText.js",
+    "src/randomZip.js",
+    "src/vendor/Markov.js"
+  ]
+}
