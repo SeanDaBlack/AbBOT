@@ -4,24 +4,25 @@ import data
 import redirection
 
 anonymous_form_data = data.anonymous_form()
+session = requests.Session()
+session.verify = True
 
 def anonymous_form(token):
 	headers = {
-    'authority': 'prolifewhistleblower.com',
-    'sec-ch-ua': '"Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"',
-    'accept': '*/*',
-    'content-type': 'multipart/form-data; boundary=----WebKitFormBoundarymzEZsVNq7gOZvSGA',
-    'x-requested-with': 'XMLHttpRequest',
-    'sec-ch-ua-mobile': '?0',
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
-    'sec-ch-ua-platform': '"Linux"',
-    'origin': 'https://prolifewhistleblower.com',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    'referer': 'https://prolifewhistleblower.com/anonymous-form/',
-    'accept-language': 'en-US,en;q=0.9',
-    'cookie': 'sucuri_cloudproxy_uuid_983586173=ebf1582f789f61d67345a0786a519292; _ga=GA1.1.1279513551.1630646088; hustle_module_show_count-social_sharing-1=3; _ga_M5WWGNMLR8=GS1.1.1630646087.1.1.1630646164.0',
+		'authority': 'prolifewhistleblower.com',
+		'accept': '*/*',
+		'dnt': '1',
+		'x-requested-with': 'XMLHttpRequest',
+		'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.58 Safari/537.36',
+		'content-type': '', # Will be set below
+		'sec-gpc': '1',
+		'origin': 'https://prolifewhistleblower.com',
+		'sec-fetch-site': 'same-origin',
+		'sec-fetch-mode': 'cors',
+		'sec-fetch-dest': 'empty',
+		'referer': 'https://prolifewhistleblower.com/anonymous-form/',
+		'accept-language': 'en-US,en;q=0.9',
+		'cookie': 'sucuri_cloudproxy_uuid_a3e8df9b2=a48734bc1fde52c7762880d406add9e7; hustle_module_show_count-social_sharing-1=36',
 	}
 
 	data = {
@@ -51,10 +52,14 @@ def anonymous_form(token):
 	for key in generated_data:
 		data[key] = generated_data[key]
 	encoded_data = MultipartEncoder(fields=data)
+	headers['content-type'] = encoded_data.content_type
+	data = encoded_data.to_string()
+	print('Sending multipart data.')
+	print(data)
 
 	redirection.end_redirect()
 	try:
-		response = requests.post('https://prolifewhistleblower.com/wp-admin/admin-ajax.php', headers=headers, data=encoded_data)
+		response = session.post('https://prolifewhistleblower.com/wp-admin/admin-ajax.php', headers=headers, data=data)
 		print('Successfully sent submitted form.')
 		print(response)
 		print(response.headers)
