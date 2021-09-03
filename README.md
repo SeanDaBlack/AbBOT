@@ -30,3 +30,13 @@ this just tells the OS it's safe to use this driver, and Selenium will start wor
 
 
 `python req.py` to run. It will loop until you kill the job. `ctrl + c` in your terminal to give the pro lifes a break (optional).
+
+## Debian linuxes / Raspberry Pi:
+
+```bash
+pip3 install -r requirements.txt # install requirements
+sudo apt install chromium-chromedriver # install chromedriver
+rm ./chromedriver ./chromedriver.exe # remove OS-X and Windows chrome drivers
+ln -s "$(which chromedriver)" . # Link system chromedriver locally
+python3 req.py # Run the script
+```
