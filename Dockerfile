@@ -31,4 +31,4 @@ COPY sc.js ./
 
 RUN pip3 install -r requirements.txt
 
-CMD python3 req.py
+CMD ["python3", "req.py"]
