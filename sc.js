@@ -50,27 +50,24 @@ gopMembers = [
 'Tom Oliverson',
 'Mike Schofield'
 ]
-firstNames = [
-'Hannah',
-'Olivia',
-'Marcia',
-'Sarah',
-'Tara',
-'Brooke',
-'Wanda',
-'Andrea',
-'Julie'
+firstNames = [      
+	'Amy', 'Allison', 'Arya', 'Aly', 'Alicia', 'Anna', 'Brittany', 'Bella', 'Brianna', 'Brooke', 'Beth', 'Brandy',
+	'Courtney', 'Camille', 'Clara', 'Christina', 'Cara', 'Caitlin', 'Dana', 'Diana', 'Dakota', 'Dani',
+	'Devon', 'Danielle', 'Darcy', 'Dominique', 'Ella', 'Eva', 'Erin', 'Evelyn', 'Eve', 'Ellie', 'Felicia',
+	'Faye', 'Faith', 'Francesca', 'Gloria', 'Gwen', 'Grace', 'Gena', 'Gabrielle', 'Hannah', 'Heather', 'Hollie',
+	'Hayden', 'Hazel', 'Hailey', 'Helena', 'Isabella', 'Iris', 'Julia', 'Jennifer', 'Jessica', 'Jo', 'Jackie',
+	'Julie', 'Marcia', 'Olivia', 'Sarah', 'Tara', 'Wanda'
+	
 ]
 lastNames = [
-'Morgan',
-'Walker',
-'Lewis',
-'Butler',
-'Jones',
-'Barnes',
-'Martin',
-'Wright',
-'Foster'
+	'Smith', 'Jones', 'Brown', 'Johnson', 'Williams', 'Miller', 'Taylor', 'Wilson', 'Davis', 'Harris', 'Clark', 'Foster',
+	'Hall', 'Thomas', 'Thompson', 'Moore', 'Hill', 'Walker', 'Anderson', 'Wright', 'Martin', 'Wood', 'Allen', 'Barnes',
+       	'Garcia', 'Martinez', 'Robinson', 'Rodriguez', 'Lewis', 'Lee', 'Young', 'Hernandez', 'King', 'Lopez', 'Butler',
+       	'Scott', 'Green', 'Adams', 'Baker', 'Gonzalez', 'Nelson', 'Carter', 'Mitchell', 'Perez', 'Roberts', 'Morgan',
+       	'Turner', 'Phillips', 'Campbell', 'Parker', 'Evans', 'Edwards', 'Collins', 'Edwards', 'Stewart', 'Sanchez'
+
+	
+	
 ]
 cities = ['Arlington','Austin','Corpus Christi','Dallas','El Paso','Fort Worth',
 'Garland','Houston','Irving','Laredo','Lubbock','Plano','San Antonio'
