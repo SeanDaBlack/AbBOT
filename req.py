@@ -4,6 +4,9 @@ import random
 import time
 
 chromedriver_location = "./chromedriver"
+# For Windows
+## chromedriver_location = "./chromedriver.exe" 
+
 
 url = 'https://prolifewhistleblower.com/anonymous-form/'
 
