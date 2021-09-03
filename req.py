@@ -31,6 +31,21 @@ words = [
 'it', 	'I', 	'word',	'said',	'if'
 ]
 
+sources = [
+'From a coworker', 'From a neighbor', 'From a family member.', 'from a friend',
+'a relative', 'a private source', 'a confession booth.', 'a cousin',
+'a taxi driver', 'From a cashier', 'a confidential tip', 'a local parent',
+'a concerned citizen', 'From a relative.', 'A PP volunteer', 'A charity worker',
+'A social worker', 'From a police officer', 'from a lawyer', 'From a government employee']
+
+docs = [
+'Dr. Smith', 'Dr. Johnson', 'Dr. Williams', 'Dr. Brown',
+'Dr. Jones', 'Dr. Miller', 'Dr. Davis', 'Dr. Garcia',
+'Dr. Rodriguez', 'Dr. Wilson', 'Dr. Martinez', 'Dr. Anderson',
+'Dr. Taylor', 'Dr. Thomas', 'Dr. Hernandez', 'Dr. Moore',
+'Dr. Martin', 'Dr. Jackson', 'Dr. Thompson', 'Dr. White'
+]
+
 cities = {'Arlington':	'Tarrant County',
 'Austin':	'Travis County',
 'Corpus Christi':	'Nueces County',
@@ -62,9 +77,9 @@ while(i < 10000):
         if key == 'txtarea':
             info = ' '.join(random.sample(words, 40))
         if key == 'txt1':
-            info = ' '.join(random.sample(words, 4))
+            info = ' '.join(random.sample(sources, 1))
         if key == 'txt6':
-            info = 'Dr. ' + random.choice(list(cities.items()))[0]
+            info = ' '.join(random.sample(docs, 1))
         if key == 'txt2':
             info = random.choice(list(cities.items()))[0]
         if key == 'txt3':
