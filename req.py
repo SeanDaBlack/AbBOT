@@ -3,7 +3,7 @@ import requests
 import random
 import time
 
-chromedriver_location = "usr/bin/chromedriver"
+chromedriver_location = "/usr/bin/chromedriver"
 
 url = 'https://prolifewhistleblower.com/anonymous-form/'
 
@@ -45,7 +45,13 @@ cities = {'Arlington':	'Tarrant County',
 'Plano':	'Collin County',
 'San Antonio': 'Bexar County'}
 i =1
-driver = webdriver.Chrome(chromedriver_location)
+chrome_options = webdriver.ChromeOptions();
+chrome_options.add_argument("start-maximized");
+chrome_options.add_argument("disable-infobars"); 
+chrome_options.add_argument("--disable-extensions"); 
+chrome_options.add_argument("--disable-dev-shm-usage"); 
+chrome_options.add_argument("--no-sandbox"); 
+driver = webdriver.Chrome(chrome_options=chrome_options)
 
 while(i < 10000):
     try:
