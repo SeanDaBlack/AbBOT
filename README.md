@@ -117,6 +117,10 @@ Now we can install the required Python 3 packages for this project.
 pip3 install -r ./requirements.txt
 ```
 
+### Generating text dynamically
+
+To make use of a feature that will generate the text of your tip dynamically on each submission, make a free account at [DeepAI](https://deepai.org/machine-learning-model/text-generator) and use the API key generated for you found on your profile page. Set the environment variable 'DEEP_AI_KEY' to this value. This will make it harder to automatically filter out these tips.
+
 #### Running the program
 
 Please ensure you're running the script with sudo, or someone with read and write access to `/etc/hosts`.
