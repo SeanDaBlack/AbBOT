@@ -58,16 +58,21 @@ driver = webdriver.Chrome(chrome_options=chrome_options)
 print('driver created')
 
 while(i < 10000):
+    print(f'--- Starting attempt number {i} ---')
     try:
-        print(f'Starting attempt number {i}')
+        print("getting URL")
         driver.get(url)
+        print("Setting timeout")
         driver.manage().timeouts().pageLoadTimeout(5, SECONDS)
-    
+
+        print("Finding element")
         driver.find_element_by_xpath('//*[@id="et-boc"]/header/div/div[2]/section/div[1]/div/div/a[2]').click()
     except:
         pass
+    print("sleeping")
     time.sleep(5)
     # print(random.choice(list(cities.items()))[0])
+    print("checking the info")
     for key in data.keys():
         info = 'Placeholder'
         if key == 'txtarea':
@@ -90,14 +95,19 @@ while(i < 10000):
 
         except:
             print("failed")
+        print("sleeping")
         time.sleep(random.randint(1,3))
+        print("continuing")
     try:
+        print("submitting the form")
         driver.find_element_by_xpath('//*[@id="checkbox-1"]/div/label[2]/span[1]').click()
         time.sleep(1.5)
         driver.find_element_by_xpath('//*[@id="forminator-module-26"]/div[13]/div/div/button').click()
         print(i)
+        print("incrementing")
         i +=1 
     except:
+        print("submitting failed")
         pass
 
     
