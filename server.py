@@ -3,6 +3,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from cgi import FieldStorage
 import forms
 import redirection
+import tokenCount
 
 
 class ReCaptchaRequestHandler(BaseHTTPRequestHandler):
@@ -36,10 +37,10 @@ class ReCaptchaRequestHandler(BaseHTTPRequestHandler):
     # Utilize the reCaptcha token against the target
     token = form.getvalue('g-recaptcha-response')
     if token:
-      print('Got reCaptcha token!')
+      print(f'Got reCaptcha token! You have {tokenCount.getToken()} tokens!')
       forms.anonymous_form(token)
     else:
-      print('Did not receive a captcha token.')
+      print(f'Did not receive a captcha token. You have {tokenCount.getToken()} tokens!')
 
 
 def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
@@ -52,7 +53,8 @@ def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
     httpd.serve_forever()
   except KeyboardInterrupt:
     print()
-    print('Ctrl+C received, shutting down the web server.')
+    tokenCount.addToken()
+    print(f'Ctrl+C received, shutting down the web server. You collected {tokenCount.getToken()} tokens!')
 
   httpd.socket.close()
   redirection.end_redirect()
