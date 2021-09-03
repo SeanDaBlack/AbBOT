@@ -3,7 +3,7 @@ import requests
 import random
 import time
 
-chromedriver_location = "./chromedriver"
+chromedriver_location = "usr/bin/chromedriver"
 
 url = 'https://prolifewhistleblower.com/anonymous-form/'
 
