@@ -1,0 +1,147 @@
+//include faker cdn 
+
+var fakerScript = document.createElement('script');
+fakerScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/Faker/0.5.12/MinFaker.js');
+document.head.appendChild(fakerScript);
+
+//wait for cdn to load
+await new Promise(r => setTimeout(r, 2000));
+
+//random int
+
+function randInt(min, max) {
+	let int = Math.floor(Math.random() * (max - min + 1) + min);
+	return int.toString();
+};
+
+//name
+
+document.getElementById('forminator-field-name-1').value = Faker.Name.findName();
+
+//address
+document.getElementById('forminator-field-street_address-address-1').value = Faker.Address.streetAddress();
+
+//city
+var txCities = [
+"Dallas",
+"Houston",
+"San Antonio",
+"Austin",
+"Fort Worth",
+"El Paso",
+"McAllen",
+"Denton",
+"Arlington",
+"Corpus Christi",
+"Plano",
+"Lubbock",
+"Laredo",
+"Killeen",
+"Irving",
+"Garland",
+"McKinney",
+"Brownsville",
+"College Station",
+"Amarillo",
+"Grand Prairie",
+"Waco",
+"Frisco",
+"Port Arthur",
+"Pasadena",
+"Beaumont",
+"Odessa",
+"Midland",
+"Mesquite",
+"Tyler",
+"Harlingen",
+"Carrollton",
+"Round Rock",
+"Pearland",
+"Richardson",
+"Abilene",
+"Texas City",
+"The Woodlands",
+"Lewisville",
+"League City",
+"Temple",
+"Allen",
+"Longview",
+"San Angelo",
+"Wichita Falls",
+"Edinburg",
+"Sugar Land",
+"Mission",
+"Conroe",
+"Bryan",
+"Texarkana",
+"Pharr",
+"New Braunfels",
+"Baytown",
+"Flower Mound"
+];
+
+document.getElementById("forminator-field-cityaddress-1").value = txCities[Math.floor((Math.random() * txCities.length))];
+
+//state
+document.getElementById("forminator-field-state-address-1").value = "Texas"
+
+//zip
+
+document.getElementById("forminator-field-zip-address-1").value = randInt(75001, 79942);
+
+//country
+document.querySelectorAll("[name='address-1-country']")[0].selectedIndex = 236;
+
+//phone
+document.getElementById("forminator-field-phone-1").value = Faker.PhoneNumber.phoneNumber();
+
+
+//email
+document.getElementById("forminator-field-email-1").value = Faker.Internet.email();
+
+//occupation 
+
+
+//employer
+document.getElementById("forminator-field-text-2").value = Faker.Company.companyName();
+
+
+
+//public office?
+
+document.querySelectorAll("[id*='forminator-field-radio-1-2']")[0].checked = true;
+
+//involved in movement?
+var movement = [
+"sidewalk-counselor",
+"pray-outside-abortion-facilities",
+"volunteer-at-pregnancy-center",
+"other"
+];
+var randMovement = movement[Math.floor((Math.random() * movement.length))];
+document.querySelectorAll("#checkbox-2 input[value=" + "'" + randMovement + "'" + "]")[0].checked=true;
+
+//involved in organization?
+document.querySelectorAll("[id*='forminator-field-radio-2-1']")[0].checked = true;
+document.getElementById("forminator-field-text-4").value = Faker.Company.companyName();
+
+//how are you interested in enforcing?
+var enforcing = [
+"litigating",
+"plaintiff",
+"data-collection",
+"other"
+];
+
+document.querySelectorAll("#checkbox-4 input[value=" + "'" + enforcing[Math.floor((Math.random() * enforcing.length))] + "'" + "]")[0].checked=true;
+
+//is there a provider in your city?
+document.querySelectorAll("[id*='forminator-field-radio-3-2']")[0].checked = true;
+
+//best time to call
+document.getElementById("forminator-field-time-1-hours").value = randInt(1, 12);
+document.getElementById("forminator-field-time-1-minutes").value = "30";
+document.getElementById("forminator-form-25__field--time-1-ampm").value = "am";
+
+
+
