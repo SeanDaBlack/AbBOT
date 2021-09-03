@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import random
 import time
+from faker import Faker
+
+fake = Faker('en-US')
 
 words = [
   'The', 'he', 'at', 'but', 'there', 'of', 'was', 'be', 'not', 'use', 'and', 'for', 'this', 'what', 'an', 'a', 'on', 'have', 'all', 'each',
@@ -32,8 +35,8 @@ gop_members = [
   'Jeff Cason', 'Matt Krause', 'Tony Tinderholt', 'David Cook', 'Craig Goldman', 'Giovanni Capriglione', 'Charlie Geren', 'Sam Harless',
   'Dan Huberty', 'Briscoe Cain', 'Dennis Paul', 'Tom Oliverson', 'Mike Schofield'
 ]
-firstNames = ['Hannah', 'Olivia', 'Marcia', 'Sarah', 'Tara', 'Brooke', 'Wanda', 'Andrea', 'Julie']
-lastNames = ['Morgan', 'Walker', 'Lewis', 'Butler', 'Jones', 'Barnes', 'Martin', 'Wright', 'Foster']
+#firstNames = ['Hannah', 'Olivia', 'Marcia', 'Sarah', 'Tara', 'Brooke', 'Wanda', 'Andrea', 'Julie']
+#lastNames = ['Morgan', 'Walker', 'Lewis', 'Butler', 'Jones', 'Barnes', 'Martin', 'Wright', 'Foster']
 
 info_location = [
   'A friend saw them', 'I work at the clinic', 'I know his secretary', 'He told me at the club', 'The police report', 'His wife told me'
@@ -196,6 +199,7 @@ ips = [
   "12.56.225.",  # Dallas
   "67.10.46."  # Edinburg
 ]
+
 # random element from each list
 
 
@@ -203,13 +207,13 @@ def anonymous_form():
   while True:
     city, county = random.choice(list(cities.items()))
     form_data = {
-      'textarea-1': random.choice(gop_members) + ' took their mistress ' + random.choice(firstNames) + ' ' + random.choice(lastNames) +
+      'textarea-1': random.choice(gop_members) + ' took their mistress ' + fake.first_name() + ' ' + fake.last_name() +
       ' to get an abortion after their affair.',
       'text-1': random.choice(info_location),
-      'text-6': 'Dr. ' + random.choice(lastNames),
+      'text-6': 'Dr. ' + fake.last_name(),
       'text-2': city,
       'text-3': 'Texas',
-      'text-4': str(random.randint(10000, 99999)),
+      'text-4': fake.postalcode_in_state('TX'),
       'text-5': county,
       'hidden-1': random.choice(ips) + str(random.randint(0, 255)),
       'checkbox-1[]': 'yes' if random.choice([True, False]) else 'no',
