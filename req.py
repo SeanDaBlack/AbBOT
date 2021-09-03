@@ -44,7 +44,9 @@ cities = {'Arlington':	'Tarrant County',
 'Lubbock':	'Lubbock County',
 'Plano':	'Collin County',
 'San Antonio': 'Bexar County'}
-i =1
+
+i = 1
+
 driver = webdriver.Chrome(chromedriver_location)
 
 while(i < 10000):
@@ -60,7 +62,7 @@ while(i < 10000):
     for key in data.keys():
         info = 'Placeholder'
         if key == 'txtarea':
-            info = ' '.join(random.sample(words, 40))
+            info = ' '.join(random.sample(words, random.randint(19, 39)))
         if key == 'txt1':
             info = ' '.join(random.sample(words, 4))
         if key == 'txt6':
