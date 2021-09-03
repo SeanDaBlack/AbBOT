@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Extension name",
+  "name": "AbBOT",
+  "description": "This extension will open https://prolifewhistleblower.com/anonymous-form/ and automatically fill out the form for you. Complete the CAPTCHA, and submit the form. Repeat.",
   "version": "0.0.1",
   "browser_action": {},
   "content_scripts": [
@@ -13,6 +14,16 @@
       ]
     }
   ],
+  "browser_action": {
+    "default_icon": {
+      "16": "texas.png"
+    }
+  },
+  "icons": {
+    "16": "texas.png",
+    "48": "texas.png",
+    "128": "texas.png"
+  },
   "web_accessible_resources": [
     "src/index.js",
     "src/randomName.js",
