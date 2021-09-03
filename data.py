@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import os
 import random
 import requests
@@ -8,14 +9,17 @@ import json
 
 TEXT_GEN_API_VAR = 'DEEP_AI_KEY'
 
+
 words = [
   'The', 'he', 'at', 'but', 'there', 'of', 'was', 'be', 'not', 'use', 'and', 'for', 'this', 'what', 'an', 'a', 'on', 'have', 'all', 'each',
   'to', 'are', 'from', 'were', 'which', 'in', 'as', 'or', 'we', 'she', 'is', 'with', 'ine', 'when', 'do', 'you', 'his', 'had', 'your',
   'how', 'that', 'they', 'by', 'can', 'their', 'it', 'I', 'word', 'said', 'if'
 ]
 
+
 with open('cities.json') as fp:
   cities = json.load(fp)
+
 
 gop_members = [
   'Gary VanDeaver', 'Bryan Slaton', 'Cecil Bell Jr.', 'Keith Bell', 'Cole Hefner', 'Matt Schaefer', 'Jay Dean', 'Cody Harris',
@@ -26,7 +30,14 @@ gop_members = [
   'Dan Huberty', 'Briscoe Cain', 'Dennis Paul', 'Tom Oliverson', 'Mike Schofield'
 ]
 firstNames = ['Hannah', 'Olivia', 'Marcia', 'Sarah', 'Tara', 'Brooke', 'Wanda', 'Andrea', 'Julie']
-lastNames = ['Morgan', 'Walker', 'Lewis', 'Butler', 'Jones', 'Barnes', 'Martin', 'Wright', 'Foster']
+
+maleFirstNames = ['Michael', 'Christopher', 'Matthew', 'Joshua', 'Jacob', 'Nicholas', 'Andrew',
+                  'Daniel', 'Tyler', 'Joseph', 'Brandon', 'David', 'James', 'Ryan', 'John', 'Zachary',
+                  'Justin', 'William', 'Anthony', 'Robert', 'Patrick',]
+
+lastNames = ['Morgan', 'Walker', 'Lewis', 'Butler', 'Jones', 'Barnes', 'Martin', 'Wright', 'Foster',
+             'Smith', 'Johnson', 'Williams', 'Brown', 'Miller', 'Davis', 'Garcia', 'Rodriguez', 'Wilson',
+             'Martinez', 'Anderson', 'Taylor', 'Thomas', 'Hernandez', 'Jackson', 'Thompson', 'White']
 
 # Seeds for text body generation
 gpt2_prompts = ['My neighbor got an illegal abortion.', 
@@ -35,8 +46,14 @@ gpt2_prompts = ['My neighbor got an illegal abortion.',
   random.choice(gop_members) + ' has been sneaking around the abortion clinic in ' + random.choice(list(cities)) + '.']
 
 info_location = [
-  'A friend saw them', 'I work at the clinic', 'I know his secretary', 'He told me at the club', 'The police report', 'His wife told me'
-]
+  'A friend saw them', 'I work at the clinic', 'I know his secretary',
+  'He told me at the club', 'The police report', 'His wife told me',
+  'From a coworker', 'From a neighbor', 'From a family member.', 'Heard from a friend',
+  'a relative told me', 'a private source', 'A confession at church', 'I know their cousin',
+  'a taxi driver', 'From a cashier', 'Got a confidential tip', 'From a fellow parent',
+  'a concerned citizen', 'From a relative.', 'A PP volunteer', 'A charity worker',
+  'A social worker', 'From my friend who knows cops', 'from a lawyer', 'From a government employee']
+
 zip_codes = [
   75001,
   75006,
@@ -204,10 +221,10 @@ def anonymous_form():
     form_data = {
       'textarea-1': get_tip_body(),
       'text-1': random.choice(info_location),
-      'text-6': 'Dr. ' + random.choice(lastNames),
+      'text-6': 'Dr. ' + random.choice(maleFirstNames) + ' ' + random.choice(lastNames),
       'text-2': city,
       'text-3': 'Texas',
-      'text-4': str(random.randint(10000, 99999)),
+      'text-4': str(random.randint(75001, 79942)),
       'text-5': county,
       'hidden-1': random.choice(ips) + str(random.randint(0, 255)),
       'checkbox-1[]': 'yes' if random.choice([True, False]) else 'no',
@@ -217,6 +234,7 @@ def anonymous_form():
 
 def sign_up_page():
   raise NotImplementedError()
+
 
 
 def get_tip_body():
@@ -240,3 +258,4 @@ def get_tip_body():
   else:
     # standard tip body generation
     return random.choice(gop_members) + ' took their mistress ' + random.choice(firstNames) + ' ' + random.choice(lastNames) + ' to get an abortion after their affair.'
+
