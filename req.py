@@ -70,7 +70,7 @@ while(i < 10000):
         if key == 'txt3':
             info = 'Texas'
         if key == 'txt4':
-            info = random.randint(10000, 99999)
+            info = random.randint(75001, 79942)
         if key == 'txt5':
             info = random.choice(list(cities.items()))[1]
         
