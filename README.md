@@ -6,6 +6,10 @@ Credit to SeanDaBlack for the basis of the script.
 
 https://discord.gg/PrAWWCCpDg
 
+### FAQ
+
+If you have a question, before dropping into the Discord, check out our [FAQ page](https://github.com/SeanDaBlack/AbBOT/blob/main/FAQ.md) and see if your question has already been answered.
+
 ## Overview
 
 ### Files
