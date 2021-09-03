@@ -1,22 +1,4 @@
 {
-  "scripts": {
-    "clean:extension": "rimraf ./dist",
-    "serve:extension": "parcel index.html --port 3002 --dist-dir dist",
-    "bundle:extension": "parcel build index.html --dist-dir dist",
-    "start:extension": "run-s clean:extension assets:extension serve:extension",
-    "build:extension": "run-s clean:extension bundle:extension",
-    "assets:extension": "mkdir -p dist && cp public/* dist/",
-    "build": "run-s build:*",
-    "start": "run-p start:*",
-    "clean": "rimraf ./parcel-cache ./dist"
-  },
-  "name": "abbot-chrome-extension",
-  "version": "1.0.0",
-  "license": "UNLICENSED",
-  "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "parcel": "^2.0.0-beta.1",
-    "rimraf": "^3.0.2"
-  },
-  "alias": {}
+  "name": "wrecksas",
+  "version": "0.0.1"
 }
