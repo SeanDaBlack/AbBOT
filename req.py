@@ -32,7 +32,10 @@ infoLocation = [
     'I live near the clinic',
     'My friend works in the clinic',
     'I overheard them at a bar',
-    'I heard them arguing at a restaurant'
+    'I heard them arguing at a restaurant',
+    'I worked with the mistress.',
+    'Our kids go to school together.',
+    'The choir director at church told me!'
 ]
 
 gopMembers = [
@@ -81,7 +84,8 @@ gopMembers = [
     'Briscoe Cain',
     'Dennis Paul',
     'Tom Oliverson',
-    'Mike Schofield'
+    'Mike Schofield',
+    'Ted Cruz',
 ]
 
 firstNames = [
@@ -104,7 +108,7 @@ lastNames = [
 ]
 
 verbs = [
-    'took', 'encouraged', 'brought', 'helped', 'forced',
+    'took', 'encouraged', 'brought', 'helped', 'forced', 'paid', 'bribed', 'allowed', 'went with',
 ]
 
 hatePhrase = [
@@ -144,6 +148,9 @@ cities = {
     'Plano':	        'Collin County',
     'San Antonio':      'Bexar County'
           }
+
+zipCodes = [75001,75006,75011,75014,75015,75016,75017,75019,75030,75038,75039,75040,75041,75042,75043,75044,75045,75046,75047,75048,75048,75049,75050,75051,75052,75053,75054,75060,75061,75062,75063,75080,75081,75082,75083,75085,75088,75089,75104,75106,75115,75116,75123,75134,75137,75138,75141,75146,75149,75150,75159,75159,75172,75180,75180,75181,75182,75182,75185,75187,75201,75202,75203,75204,75205,75206,75207,75208,75209,75210,75211,75212,75214,75215,75216,75217,75218,75219,75220,75221,75222,75223,75224,75225,75226,75227,75228,75229,75230,75231,75232,75233,75234,75234,75235,75236,75237,75238,75239,75240,75241,75242,75243,75244,75244,75245,75246,75247,75248,75249,75250,75251,75253,75254,75258,75260,75261,75262,75263,75264,75265,75266,75267,75270,75295,75313,75315,75336,75339,75342,75354,75355,75356,75357,75359,75360,75367,75370,75371,75372,75374,75376,75378,75379,75380,75381,75382,75398,]
+
 i = 1
 driver = webdriver.Chrome(chromedriver_location)
 
@@ -160,25 +167,22 @@ while(i < 10000):
     # print(random.choice(list(cities.items()))[0])
     for key in data.keys():
         info = 'Placeholder'
-        # if key == 'txtarea':
-        #     info = ' '.join(random.sample(words, 40))
         if key == 'txtarea':
             info = random.choice(list(gopMembers)) + ' ' + random.choice(list(verbs)) + ' their mistress, ' + random.choice(list(
                 firstNames)) + ' ' + random.choice(list(lastNames)) + ' to get an abortion after their affair.' + random.choice(list(hatePhrase))
-        # if key == 'txt1':
-        #     info = ' '.join(random.sample(words, 4))
         if key == 'txt1':
             info = random.choice(list(infoLocation))
         if key == 'txt6':
             info = 'Dr. ' + random.choice(list(lastNames))
         if key == 'txt2':
-            info = random.choice(list(cities.items()))[0]
+            cityNum = random.randint(0, len(cities))
+            info = list(cities)[cityNum-1]
         if key == 'txt3':
             info = 'Texas'
         if key == 'txt4':
-            info = random.randint(10000, 99999)
+            info = random.choice(list(zipCodes))
         if key == 'txt5':
-            info = random.choice(list(cities.items()))[1]
+            info = list(cities.values())[cityNum-1]
 
         try:
             driver.find_element_by_xpath(data.get(key)).send_keys(info)
