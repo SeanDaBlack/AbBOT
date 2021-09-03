@@ -2,6 +2,7 @@ from selenium import webdriver
 import requests
 import random
 import time
+import os
 
 chromedriver_location = "/usr/bin/chromedriver"
 
@@ -51,10 +52,14 @@ chrome_options.add_argument("disable-infobars");
 chrome_options.add_argument("--disable-extensions"); 
 chrome_options.add_argument("--disable-dev-shm-usage"); 
 chrome_options.add_argument("--no-sandbox"); 
+chrome_options.add_argument("--headless");
+print('creating driver')
 driver = webdriver.Chrome(chrome_options=chrome_options)
+print('driver created')
 
 while(i < 10000):
     try:
+        print(f'Starting attempt number {i}')
         driver.get(url)
         driver.manage().timeouts().pageLoadTimeout(5, SECONDS)
     
