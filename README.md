@@ -2,6 +2,10 @@
 
 Credit to SeanDaBlack for the basis of the script.
 
+## Discord Server
+
+https://discord.gg/PrAWWCCpDg
+
 ## Overview
 
 ### Files
