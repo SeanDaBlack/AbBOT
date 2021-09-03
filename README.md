@@ -39,7 +39,9 @@ cd AbBot
 
 If you don't already have `python3.exe` and `pip3.exe` installed on Windows, you can install them from the Microsoft Store.
 
-https://www.microsoft.com/store/productId/9P7QFQMJRFP7
+
+https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7
+
 
 Now we can install the required Python 3 packages for this project.
 
@@ -124,6 +126,12 @@ Now we can install the required Python 3 packages for this project.
 ```bash
 pip3 install -r ./requirements.txt
 ```
+
+
+### Generating text dynamically
+
+To make use of a feature that will generate the text of your tip dynamically on each submission, make a free account at [DeepAI](https://deepai.org/machine-learning-model/text-generator) and use the API key generated for you found on your profile page. Set the environment variable 'DEEP_AI_KEY' to this value. This will make it harder to automatically filter out these tips.
+
 
 #### Running the program
 
