@@ -6,7 +6,7 @@ running the extension:
 
 you will now have a parcel server running that's watching your files and will hot reload the extension on save, bundling it into the `dist` directory. 
 
-4. Navigate to `chrome://extension` and turn on dev mode if it's not already (top right corner)
+4. Navigate to `chrome://extensions` and turn on dev mode if it's not already (top right corner)
 5. Load unpacked
 6. Find your dist folder
 7. enable the server.
