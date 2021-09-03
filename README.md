@@ -31,7 +31,7 @@ cd AbBot
 
 If you don't already have `python3.exe` and `pip3.exe` installed on Windows, you can install them from the Microsoft Store.
 
-https://www.microsoft.com/store/productId/9P7QFQMJRFP7
+https://www.microsoft.com/en-us/p/python-39/9p7qfqmjrfp7
 
 Now we can install the required Python 3 packages for this project.
 
