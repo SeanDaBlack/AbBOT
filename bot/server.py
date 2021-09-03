@@ -9,11 +9,11 @@ from .logger import logger
 from . import forms
 from . import redirection
 
+success_count = 0
+failure_count = 0
+
 
 class ReCaptchaRequestHandler(BaseHTTPRequestHandler):
-  success_count = 0
-  failure_count = 0
-
   def log_request(self, code):
     pass  # Disables built-in logging
 
@@ -33,7 +33,9 @@ class ReCaptchaRequestHandler(BaseHTTPRequestHandler):
     self._serve_captcha()
 
   def do_POST(self):
+    global success_count, failure_count
     logger.debug('POST request received.')
+
     # Parse the form data posted
     form = FieldStorage(
       fp=self.rfile, headers=self.headers, environ={
@@ -50,12 +52,12 @@ class ReCaptchaRequestHandler(BaseHTTPRequestHandler):
       success = forms.anonymous_form(token)
       if success:
         print('Form successfully submitted!')
-        self.success_count += 1
+        success_count += 1
 
-        if args.count != None and self.success_count >= args.count:
+        if args.count != None and success_count >= args.count:
           print(
             'Shutting dowin with {} success{}, {} failure{}.'.format(
-              self.success_count, '' if self.success_count == 1 else 'es', self.failure_count, '' if self.failure_count == 1 else 's'
+              success_count, '' if success_count == 1 else 'es', failure_count, '' if failure_count == 1 else 's'
             )
           )
           shutdown_thread = threading.Thread(target=self.server.shutdown)
@@ -64,11 +66,11 @@ class ReCaptchaRequestHandler(BaseHTTPRequestHandler):
           return
       else:
         print('Form failed to submit.')
-        self.failure_count += 1
+        failure_count += 1
 
       logger.info(
         '{} success{}, {} failure{}'.format(
-          self.success_count, '' if self.success_count == 1 else 'es', self.failure_count, '' if self.failure_count == 1 else 's'
+          success_count, '' if success_count == 1 else 'es', failure_count, '' if failure_count == 1 else 's'
         )
       )
     else:

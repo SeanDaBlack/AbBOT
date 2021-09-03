@@ -3,12 +3,9 @@
 import os
 import random
 import requests
-import time
 import json
 
-
 TEXT_GEN_API_VAR = 'DEEP_AI_KEY'
-
 
 words = [
   'The', 'he', 'at', 'but', 'there', 'of', 'was', 'be', 'not', 'use', 'and', 'for', 'this', 'what', 'an', 'a', 'on', 'have', 'all', 'each',
@@ -16,10 +13,8 @@ words = [
   'how', 'that', 'they', 'by', 'can', 'their', 'it', 'I', 'word', 'said', 'if'
 ]
 
-
-with open('cities.json') as fp:
-  cities = json.load(fp)
-
+with open(os.path.join(os.path.dirname(__file__), './data/cities.json')) as cities_file:
+  cities = json.load(cities_file)
 
 gop_members = [
   'Gary VanDeaver', 'Bryan Slaton', 'Cecil Bell Jr.', 'Keith Bell', 'Cole Hefner', 'Matt Schaefer', 'Jay Dean', 'Cody Harris',
@@ -31,28 +26,49 @@ gop_members = [
 ]
 firstNames = ['Hannah', 'Olivia', 'Marcia', 'Sarah', 'Tara', 'Brooke', 'Wanda', 'Andrea', 'Julie']
 
-maleFirstNames = ['Michael', 'Christopher', 'Matthew', 'Joshua', 'Jacob', 'Nicholas', 'Andrew',
-                  'Daniel', 'Tyler', 'Joseph', 'Brandon', 'David', 'James', 'Ryan', 'John', 'Zachary',
-                  'Justin', 'William', 'Anthony', 'Robert', 'Patrick',]
+maleFirstNames = [
+  'Michael',
+  'Christopher',
+  'Matthew',
+  'Joshua',
+  'Jacob',
+  'Nicholas',
+  'Andrew',
+  'Daniel',
+  'Tyler',
+  'Joseph',
+  'Brandon',
+  'David',
+  'James',
+  'Ryan',
+  'John',
+  'Zachary',
+  'Justin',
+  'William',
+  'Anthony',
+  'Robert',
+  'Patrick',
+]
 
-lastNames = ['Morgan', 'Walker', 'Lewis', 'Butler', 'Jones', 'Barnes', 'Martin', 'Wright', 'Foster',
-             'Smith', 'Johnson', 'Williams', 'Brown', 'Miller', 'Davis', 'Garcia', 'Rodriguez', 'Wilson',
-             'Martinez', 'Anderson', 'Taylor', 'Thomas', 'Hernandez', 'Jackson', 'Thompson', 'White']
+lastNames = [
+  'Morgan', 'Walker', 'Lewis', 'Butler', 'Jones', 'Barnes', 'Martin', 'Wright', 'Foster', 'Smith', 'Johnson', 'Williams', 'Brown', 'Miller',
+  'Davis', 'Garcia', 'Rodriguez', 'Wilson', 'Martinez', 'Anderson', 'Taylor', 'Thomas', 'Hernandez', 'Jackson', 'Thompson', 'White'
+]
 
 # Seeds for text body generation
-gpt2_prompts = ['My neighbor got an illegal abortion.', 
-  'I suspect my father has violated the abortion ban.', 
-  random.choice(firstNames) +' ' + random.choice(lastNames) + ' is helping people get abortions.',
-  random.choice(gop_members) + ' has been sneaking around the abortion clinic in ' + random.choice(list(cities)) + '.']
+gpt2_prompts = [
+  'My neighbor got an illegal abortion.', 'I suspect my father has violated the abortion ban.',
+  random.choice(firstNames) + ' ' + random.choice(lastNames) + ' is helping people get abortions.',
+  random.choice(gop_members) + ' has been sneaking around the abortion clinic in ' + random.choice(list(cities)) + '.'
+]
 
 info_location = [
-  'A friend saw them', 'I work at the clinic', 'I know his secretary',
-  'He told me at the club', 'The police report', 'His wife told me',
-  'From a coworker', 'From a neighbor', 'From a family member.', 'Heard from a friend',
-  'a relative told me', 'a private source', 'A confession at church', 'I know their cousin',
-  'a taxi driver', 'From a cashier', 'Got a confidential tip', 'From a fellow parent',
-  'a concerned citizen', 'From a relative.', 'A PP volunteer', 'A charity worker',
-  'A social worker', 'From my friend who knows cops', 'from a lawyer', 'From a government employee']
+  'A friend saw them', 'I work at the clinic', 'I know his secretary', 'He told me at the club', 'The police report', 'His wife told me',
+  'From a coworker', 'From a neighbor', 'From a family member.', 'Heard from a friend', 'a relative told me', 'a private source',
+  'A confession at church', 'I know their cousin', 'a taxi driver', 'From a cashier', 'Got a confidential tip', 'From a fellow parent',
+  'a concerned citizen', 'From a relative.', 'A PP volunteer', 'A charity worker', 'A social worker', 'From my friend who knows cops',
+  'from a lawyer', 'From a government employee'
+]
 
 zip_codes = [
   75001,
@@ -236,17 +252,14 @@ def sign_up_page():
   raise NotImplementedError()
 
 
-
 def get_tip_body():
   # If we have an API key for GPT2, use it
-  if os.environ[TEXT_GEN_API_VAR]:
+  if TEXT_GEN_API_VAR in os.environ:
     prompt = random.choice(gpt2_prompts)
     r = requests.post(
-    "https://api.deepai.org/api/text-generator",
-    data={
+      "https://api.deepai.org/api/text-generator", data={
         'text': prompt,
-    },
-    headers={'api-key': os.environ[TEXT_GEN_API_VAR]}
+      }, headers={'api-key': os.environ[TEXT_GEN_API_VAR]}
     )
     rv = str(r.json()['output'].encode('utf-8'))
     # cut out the prompt, which comes from a limited set and can be filtered on
@@ -257,5 +270,6 @@ def get_tip_body():
     return rv
   else:
     # standard tip body generation
-    return random.choice(gop_members) + ' took their mistress ' + random.choice(firstNames) + ' ' + random.choice(lastNames) + ' to get an abortion after their affair.'
-
+    return random.choice(gop_members) + ' took their mistress ' + random.choice(firstNames) + ' ' + random.choice(
+      lastNames
+    ) + ' to get an abortion after their affair.'
