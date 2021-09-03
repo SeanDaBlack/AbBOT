@@ -14,3 +14,6 @@ RUN CHROME_SETUP=google-chrome.deb && \
     dpkg -i $CHROME_SETUP && \
     apt-get install -y -f && \
     rm $CHROME_SETUP
+
+RUN pip3 install selenium
+RUN pip3 install pyvirtualdisplay
