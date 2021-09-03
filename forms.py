@@ -32,8 +32,6 @@ def get_nonce():
   print('Getting the nocne.')
   try:
     response = requests.post('https://prolifewhistleblower.com/wp-admin/admin-ajax.php', data=payload, headers=headers)
-    print(response.headers)
-    print(response.text)
     match = re.search(r'name=\\"forminator_nonce\\" value=\\"(?P<nonce>.+?)\\"', response.text)
     if match == None:
       return None
