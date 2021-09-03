@@ -2,48 +2,14 @@ from selenium import webdriver
 import requests
 import random
 import time
+from cities import cities
+from data import data
+from words import words
 
 chromedriver_location = "./chromedriver"
 
 url = 'https://prolifewhistleblower.com/anonymous-form/'
 
-data = {
-    'txtarea': '//*[@id="forminator-field-textarea-1"]',
-    'txt1': '//*[@id="forminator-field-text-1"]',
-    'txt6': '//*[@id="forminator-field-text-6"]',
-    'txt2': '//*[@id="forminator-field-text-2"]',
-    'txt3': '//*[@id="forminator-field-text-3"]',
-    'txt4': '//*[@id="forminator-field-text-4"]',
-    'txt5': '//*[@id="forminator-field-text-5"]'
-
-}
-
-words = [
-'The',  'he',   'at',	'but',  'there',
-'of',   'was',  'be', 	'not', 	'use',
-'and', 	'for', 	'this', 'what',	'an',
-'a',    'on',   'have', 'all',  'each',
-'to', 	'are', 	'from', 'were', 'which',
-'in', 	'as', 	'or', 	'we', 	'she',
-'is', 	'with', 'ine', 	'when', 'do',
-'you', 	'his', 	'had', 	'your', 'how',
-'that', 'they', 'by', 	'can', 	'their',
-'it', 	'I', 	'word',	'said',	'if'
-]
-
-cities = {'Arlington':	'Tarrant County',
-'Austin':	'Travis County',
-'Corpus Christi':	'Nueces County',
-'Dallas':	'Collin County',
-'El Paso':	'El Paso County',
-'Fort Worth':	'Denton County',
-'Garland':	'Collin County',
-'Houston':	'Fort Bend County',
-'Irving':	'Dallas County',
-'Laredo':	'Webb County',
-'Lubbock':	'Lubbock County',
-'Plano':	'Collin County',
-'San Antonio': 'Bexar County'}
 i =1
 driver = webdriver.Chrome(chromedriver_location)
 

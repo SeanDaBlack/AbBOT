@@ -1,0 +1,13 @@
+cities = {'Arlington':	'Tarrant County',
+'Austin':	'Travis County',
+'Corpus Christi':	'Nueces County',
+'Dallas':	'Collin County',
+'El Paso':	'El Paso County',
+'Fort Worth':	'Denton County',
+'Garland':	'Collin County',
+'Houston':	'Fort Bend County',
+'Irving':	'Dallas County',
+'Laredo':	'Webb County',
+'Lubbock':	'Lubbock County',
+'Plano':	'Collin County',
+'San Antonio': 'Bexar County'}
