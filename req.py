@@ -1,9 +1,36 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 import requests
 import random
 import time
+from fake_useragent import UserAgent
 
-chromedriver_location = "./chromedriver"
+
+def create_chromedriver(headless_mode: bool) -> webdriver.Chrome:
+    ua = UserAgent()
+    user_agent = ua.random
+
+    # Add some options to make browser fingerprinting more difficult
+    chrome_options = Options()
+    chrome_options.add_argument(f'--user-agent={user_agent}')
+    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option('useAutomationExtension', False)
+    chrome_options.add_argument("--no-sandbox")
+    if headless_mode:
+        chrome_options.add_argument("--headless")
+
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+        "source": """
+        Object.defineProperty(navigator, 'webdriver', {
+          get: () => undefined
+        })
+      """
+    })
+    return driver
+
 
 url = 'https://prolifewhistleblower.com/anonymous-form/'
 
@@ -45,7 +72,11 @@ cities = {'Arlington':	'Tarrant County',
 'Plano':	'Collin County',
 'San Antonio': 'Bexar County'}
 i =1
-driver = webdriver.Chrome(chromedriver_location)
+
+SECONDS = 10
+HEADLESS_MODE = False
+
+driver = create_chromedriver(HEADLESS_MODE)
 
 while(i < 10000):
     try:

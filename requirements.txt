@@ -4,3 +4,5 @@ idna==3.2
 requests==2.26.0
 selenium==3.141.0
 urllib3==1.26.6
+fake-useragent==0.1.11
+webdriver-manager==3.4.2
