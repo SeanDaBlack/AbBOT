@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "abBOT extension",
+  "version": "0.1.0",
+  "permissions": ["tabs", "storage"],
+  "commands": {
+    "run-extension": {
+      "suggested_key": {
+        "default": "Ctrl+Y",
+        "mac": "Command+Y"
+      },
+      "description": "Activate abBOT!",
+      "global": true
+    },
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Ctrl+H",
+        "mac": "Command+H",
+        "chromeos": "Ctrl+H",
+        "linux": "Ctrl+H"
+      }
+    }
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "matt.png"
+    },
+    "default_popup": "index.html"
+  }
+}
+
