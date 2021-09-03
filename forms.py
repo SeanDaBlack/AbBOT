@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from requests_toolbelt import MultipartEncoder
 import requests
 import re
@@ -29,7 +30,7 @@ def get_nonce():
     "cookie": "sucuri_cloudproxy_uuid_a3e8df9b2=a48734bc1fde52c7762880d406add9e7; hustle_module_show_count-social_sharing-1=2"
   }
 
-  print('Getting the nocne.')
+  print('Getting the nonce.')
   try:
     response = requests.post('https://prolifewhistleblower.com/wp-admin/admin-ajax.php', data=payload, headers=headers)
     match = re.search(r'name=\\"forminator_nonce\\" value=\\"(?P<nonce>.+?)\\"', response.text)
@@ -98,6 +99,8 @@ def anonymous_form(token):
     print('No nonce found, stopping.')
     redirection.redirect()
     return
+  else:
+    print('Got the nonce.')
 
   try:
     response = session.post('https://prolifewhistleblower.com/wp-admin/admin-ajax.php', headers=headers, data=data)
