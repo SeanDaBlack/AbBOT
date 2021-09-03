@@ -4,7 +4,7 @@ Credit to SeanDaBlack for the basisof the script.
 req.py is selenium python bot.
 sc.js is a the base of the ios shortcut
 
-# Setup
+## Setup
 
 On mac:
 
@@ -30,3 +30,8 @@ this just tells the OS it's safe to use this driver, and Selenium will start wor
 
 
 `python req.py` to run. It will loop until you kill the job. `ctrl + c` in your terminal to give the pro lifes a break (optional).
+
+## On Docker
+
+* First, build: `docker build -t abbot .`
+* Then run: `docker run abbot`
