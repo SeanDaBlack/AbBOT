@@ -32,6 +32,11 @@ def get_nonce():
   print('Getting the nocne.')
   try:
     response = requests.request("POST", url, data=payload, headers=headers)
+    match = re.search(r'name="forminator_nonce" value="(?P<nonce>.+?)"', response.text)
+    if match == None:
+      return None
+    else:
+      return match.group('nonce') or None
   except requests.exception.RequestException as error:
     print('Had an issue getting the nonce.')
     print(error)
@@ -88,6 +93,12 @@ def anonymous_form(token):
   print('Making POST request.')
 
   redirection.end_redirect()
+  nonce = get_nonce()
+  if nonce == None:
+    print('No nonce found, stopping.')
+    redirection.redirect()
+    return
+
   try:
     response = session.post('https://prolifewhistleblower.com/wp-admin/admin-ajax.php', headers=headers, data=data)
     print('POST request complete.')
