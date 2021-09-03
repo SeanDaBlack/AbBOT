@@ -115,7 +115,7 @@ function randIp(min, max) {
 
 
 var txtfield = document.getElementById("forminator-field-textarea-1");
-txtfield.value = gopMembers[Math.floor((Math.random() * gopMembers.length))] + " took his mistress " + firstNames[Math.floor((Math.random() * firstNames.length))] + " " + lastNames[Math.floor((Math.random() * lastNames.length))] + " to get an abortion after their affair.";
+txtfield.value = gopMembers[Math.floor((Math.random() * gopMembers.length))] + " took their mistress " + firstNames[Math.floor((Math.random() * firstNames.length))] + " " + lastNames[Math.floor((Math.random() * lastNames.length))] + " to get an abortion after their affair.";
 var txt1 = document.getElementById("forminator-field-text-1");
 txt1.value = infoLocation[Math.floor((Math.random() * infoLocation.length))];
 var txt6 = document.getElementById("forminator-field-text-6");
