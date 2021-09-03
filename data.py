@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
+import os
 import random
+import requests
 import time
 import json
+
+
+TEXT_GEN_API_VAR = 'DEEP_AI_KEY'
 
 words = [
   'The', 'he', 'at', 'but', 'there', 'of', 'was', 'be', 'not', 'use', 'and', 'for', 'this', 'what', 'an', 'a', 'on', 'have', 'all', 'each',
@@ -22,6 +27,12 @@ gop_members = [
 ]
 firstNames = ['Hannah', 'Olivia', 'Marcia', 'Sarah', 'Tara', 'Brooke', 'Wanda', 'Andrea', 'Julie']
 lastNames = ['Morgan', 'Walker', 'Lewis', 'Butler', 'Jones', 'Barnes', 'Martin', 'Wright', 'Foster']
+
+# Seeds for text body generation
+gpt2_prompts = ['My neighbor got an illegal abortion.', 
+  'I suspect my father has violated the abortion ban.', 
+  random.choice(firstNames) +' ' + random.choice(lastNames) + ' is helping people get abortions.',
+  random.choice(gop_members) + ' has been sneaking around the abortion clinic in ' + random.choice(list(cities)) + '.']
 
 info_location = [
   'A friend saw them', 'I work at the clinic', 'I know his secretary', 'He told me at the club', 'The police report', 'His wife told me'
@@ -191,8 +202,7 @@ def anonymous_form():
   while True:
     city, county = random.choice(list(cities.items()))
     form_data = {
-      'textarea-1': random.choice(gop_members) + ' took their mistress ' + random.choice(firstNames) + ' ' + random.choice(lastNames) +
-      ' to get an abortion after their affair.',
+      'textarea-1': get_tip_body(),
       'text-1': random.choice(info_location),
       'text-6': 'Dr. ' + random.choice(lastNames),
       'text-2': city,
@@ -207,3 +217,26 @@ def anonymous_form():
 
 def sign_up_page():
   raise NotImplementedError()
+
+
+def get_tip_body():
+  # If we have an API key for GPT2, use it
+  if os.environ[TEXT_GEN_API_VAR]:
+    prompt = random.choice(gpt2_prompts)
+    r = requests.post(
+    "https://api.deepai.org/api/text-generator",
+    data={
+        'text': prompt,
+    },
+    headers={'api-key': os.environ[TEXT_GEN_API_VAR]}
+    )
+    rv = str(r.json()['output'].encode('utf-8'))
+    # cut out the prompt, which comes from a limited set and can be filtered on
+    rv = rv.replace(prompt, '').lstrip()
+    # take string up through last complete sentence since we occasionally get trailing words
+    if '.' in rv:
+      rv = rv[0:rv.rindex('.')] + '.'
+    return rv
+  else:
+    # standard tip body generation
+    return random.choice(gop_members) + ' took their mistress ' + random.choice(firstNames) + ' ' + random.choice(lastNames) + ' to get an abortion after their affair.'
