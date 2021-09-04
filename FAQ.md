@@ -23,3 +23,4 @@
    # or
    sudo env "PATH=$PATH" ./main.py
    ```
+   You may also need to run the installation itself as sudo, e.g. `sudo pip3 install -r ./requirements.txt`
