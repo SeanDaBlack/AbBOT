@@ -4,7 +4,7 @@ Credit to SeanDaBlack for the basis of the script.
 
 ## New Repos
 
-Active development has moved to seperate projects for each effor.
+Active development has moved to seperate projects for each effort.
 
 - Python Bot - https://github.com/ramblingjordan/AbBOT-python
 - iOS Shortcut - https://github.com/ramblingjordan/AbBOT-iOS-shortcut
