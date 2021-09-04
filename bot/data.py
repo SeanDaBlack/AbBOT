@@ -24,35 +24,31 @@ gop_members = [
   'Jeff Cason', 'Matt Krause', 'Tony Tinderholt', 'David Cook', 'Craig Goldman', 'Giovanni Capriglione', 'Charlie Geren', 'Sam Harless',
   'Dan Huberty', 'Briscoe Cain', 'Dennis Paul', 'Tom Oliverson', 'Mike Schofield'
 ]
-firstNames = ['Hannah', 'Olivia', 'Marcia', 'Sarah', 'Tara', 'Brooke', 'Wanda', 'Andrea', 'Julie']
+firstNames = [
+'Amy', 'Allison', 'Arya', 'Aly', 'Alicia', 'Anna', 'Brittany', 'Bella', 'Brianna', 'Brooke', 'Beth', 'Brandy',
+'Courtney', 'Camille', 'Clara', 'Christina', 'Cara', 'Caitlin', 'Dana', 'Diana', 'Dakota', 'Dani',
+'Devon', 'Danielle', 'Darcy', 'Dominique', 'Ella', 'Eva', 'Erin', 'Evelyn', 'Eve', 'Ellie', 'Felicia',
+'Faye', 'Faith', 'Francesca', 'Gloria', 'Gwen', 'Grace', 'Gena', 'Gabrielle', 'Hannah', 'Heather', 'Hollie',
+'Hayden', 'Hazel', 'Hailey', 'Helena', 'Isabella', 'Iris', 'Julia', 'Jennifer', 'Jessica', 'Jo', 'Jackie',
+'Julie', 'Marcia', 'Olivia', 'Sarah', 'Tara', 'Wanda'
+]
 
 maleFirstNames = [
-  'Michael',
-  'Christopher',
-  'Matthew',
-  'Joshua',
-  'Jacob',
-  'Nicholas',
-  'Andrew',
-  'Daniel',
-  'Tyler',
-  'Joseph',
-  'Brandon',
-  'David',
-  'James',
-  'Ryan',
-  'John',
-  'Zachary',
-  'Justin',
-  'William',
-  'Anthony',
-  'Robert',
-  'Patrick',
+'Aaron', 'Abdul', 'Adam', 'Adrian', 'Ahmed', 'Alan', 'Alex', 'Allen', 'Andrew', 'Andy', 'Anthony', 'Blake', 'Brad', 'Bradley',
+'Brandon', 'Brian', 'Bryant', 'Byron', 'Buddy', 'Cameron', 'Carl', 'Carlos', 'Carter', 'Christopher', 'Chris', 'Cody', 'Clark',
+'Dallas', 'Daniel', 'Donnie', 'Dante', 'Darell', 'Darrel', 'Dave', 'David', 'Demetrius', 'Derek', 'Deon', 'Domenic',
+'Evan', 'Emilio', 'Emmett', 'Enrique', 'Edward', 'Ethan', 'Eric', 'Esteban', 'Floyd', 'Forest',
+'Frank', 'Fred', 'Floyd', 'Fidel', 'Felton', 'Foster', 'Gabriel', 'Gene', 'Geoffrey', 'George',
+'Geraldo', 'Graham', 'Glen', 'Greg', 'Jacob', 'James', 'John', 'Joseph', 'Joshua', 'Justin', 'Matthew', 'Michael', 'Nicholas',
+'Pat', 'Patrick', 'Robert', 'Ryan', 'Tyler', 'William', 'Zach', 'Zachary'
 ]
 
 lastNames = [
-  'Morgan', 'Walker', 'Lewis', 'Butler', 'Jones', 'Barnes', 'Martin', 'Wright', 'Foster', 'Smith', 'Johnson', 'Williams', 'Brown', 'Miller',
-  'Davis', 'Garcia', 'Rodriguez', 'Wilson', 'Martinez', 'Anderson', 'Taylor', 'Thomas', 'Hernandez', 'Jackson', 'Thompson', 'White'
+'Smith', 'Jones', 'Brown', 'Johnson', 'Williams', 'Miller', 'Taylor', 'Tyler', 'Wilson', 'Davis', 'Harris', 'Clark', 
+'Hall', 'Thomas', 'Thompson', 'Moore', 'Hill', 'Walker', 'Anderson', 'Wright', 'Martin', 'Wood', 'Allen', 'Butler',
+'Garcia', 'Martinez', 'Robinson', 'Rodriguez', 'Lewis', 'Lee', 'Young', 'Hernandez', 'King', 'Lopez', 'Morgan', 'Jackson',
+'Scott', 'Green', 'Adams', 'Baker', 'Gonzalez', 'Nelson', 'Carter', 'Mitchell', 'Perez', 'Roberts', 'White', 'Foster',
+'Turner', 'Phillips', 'Campbell', 'Parker', 'Evans', 'Edwards', 'Collins', 'Edwards', 'Stewart', 'Sanchez', 'Barnes'
 ]
 
 # Seeds for text body generation
@@ -67,7 +63,7 @@ info_location = [
   'From a coworker', 'From a neighbor', 'From a family member.', 'Heard from a friend', 'a relative told me', 'a private source',
   'A confession at church', 'I know their cousin', 'a taxi driver', 'From a cashier', 'Got a confidential tip', 'From a fellow parent',
   'a concerned citizen', 'From a relative.', 'A PP volunteer', 'A charity worker', 'A social worker', 'From my friend who knows cops',
-  'from a lawyer', 'From a government employee'
+  'from a lawyer', 'From a government employee', 'I asked her and she told me', 'Her mother told me', 'I overheard them talking'
 ]
 
 zip_codes = [
