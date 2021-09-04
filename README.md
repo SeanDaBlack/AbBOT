@@ -2,6 +2,17 @@
 
 Credit to SeanDaBlack for the basis of the script.
 
+## New Repos
+
+Active development has moved to seperate projects for each effor.
+
+- Python Bot - https://github.com/ramblingjordan/AbBOT-python
+- iOS Shortcut - https://github.com/ramblingjordan/AbBOT-iOS-shortcut
+- Chrome Extension - https://github.com/ramblingjordan/AbBOT-chrome-extension
+- Android App - https://github.com/ramblingjordan/AbBOT-android
+- Web Site - https://github.com/ramblingjordan/AbBOT-frontend
+- API - https://github.com/ramblingjordan/AbBOT-api
+
 ## Discord Server
 
 https://discord.gg/PrAWWCCpDg
