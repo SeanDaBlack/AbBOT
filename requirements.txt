@@ -1,7 +1,0 @@
-certifi==2021.5.30
-charset-normalizer==2.0.4
-dnspython==2.1.0
-idna==3.2
-requests==2.26.0
-requests-toolbelt==0.9.1
-urllib3==1.26.6
