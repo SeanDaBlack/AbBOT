@@ -2,9 +2,11 @@
 from requests_toolbelt import MultipartEncoder
 import requests
 import re
+import json
 
-import data
-import redirection
+from .logger import logger
+from . import data
+from . import redirection
 
 anonymous_form_data = data.anonymous_form()
 session = requests.Session()
@@ -30,18 +32,27 @@ def get_nonce():
     "cookie": "sucuri_cloudproxy_uuid_a3e8df9b2=a48734bc1fde52c7762880d406add9e7; hustle_module_show_count-social_sharing-1=2"
   }
 
-  print('Getting the nonce.')
+  nonce = None
+  redirection.end_redirect()
+  logger.debug('Initiating GET request to /wp-admin/admin-ajax.php for the nonce.')
   try:
     response = requests.post('https://prolifewhistleblower.com/wp-admin/admin-ajax.php', data=payload, headers=headers)
     match = re.search(r'name=\\"forminator_nonce\\" value=\\"(?P<nonce>.+?)\\"', response.text)
-    if match == None:
-      return None
+    if match == None or not match.group('nonce'):
+      nonce = None
+      logger.debug('Did not find nonce.')
+      logger.debug(response.status_code)
+      logger.debug(response.headers)
+      logger.debug(response.text)
     else:
-      return match.group('nonce') or None
+      nonce = match.group('nonce')
+      logger.debug('Found nonce: {}'.format(nonce))
   except requests.exception.RequestException as error:
-    print('Had an issue getting the nonce.')
-    print(error)
-    return None
+    logger.error('Unable to retrieve the required nonce.')
+    logger.debug(error)
+  finally:
+    redirection.redirect()
+    return nonce
 
 
 def anonymous_form(token):
@@ -91,25 +102,35 @@ def anonymous_form(token):
   encoded_data = MultipartEncoder(fields=data)
   headers['content-type'] = encoded_data.content_type
   data = encoded_data.to_string()
-  print('Making POST request.')
 
-  redirection.end_redirect()
   nonce = get_nonce()
   if nonce == None:
-    print('No nonce found, stopping.')
-    redirection.redirect()
     return
-  else:
-    print('Got the nonce.')
 
+  success = False
+  redirection.end_redirect()
+  logger.debug('Initiating POST request to /wp-admin/admin-ajax.php to submit the form data.')
   try:
     response = session.post('https://prolifewhistleblower.com/wp-admin/admin-ajax.php', headers=headers, data=data)
-    print('POST request complete.')
-    print(response.text)
+    try:
+      result = response.json()
+      if result['success'] == True:
+        success = True
+    except json.decoder.JSONDecodeError as error:
+      pass
+    except KeyError as error:
+      pass
+
+    logger.debug('RESPONSE:')
+    logger.debug(response.status_code)
+    logger.debug(response.headers)
+    logger.debug(response.text)
   except requests.exception.RequestException as error:
-    print('Had an issue making the POST request.')
-    print(error)
-  redirection.redirect()
+    logger.error('Unable to submit the form data.')
+    logger.debug(error)
+  finally:
+    redirection.redirect()
+    return success
 
 
 def sign_up_page(token):
