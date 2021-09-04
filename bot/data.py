@@ -63,7 +63,7 @@ info_location = [
   'From a coworker', 'From a neighbor', 'From a family member.', 'Heard from a friend', 'a relative told me', 'a private source',
   'A confession at church', 'I know their cousin', 'a taxi driver', 'From a cashier', 'Got a confidential tip', 'From a fellow parent',
   'a concerned citizen', 'From a relative.', 'A PP volunteer', 'A charity worker', 'A social worker', 'From my friend who knows cops',
-  'from a lawyer', 'From a government employee', 'I asked her and she told me', 'Her mother told me', 'I overheard them talking'
+  'from a lawyer', 'From a government employee', 'She told me privately', 'Her mother told me', 'I overheard them talking'
 ]
 
 zip_codes = [
