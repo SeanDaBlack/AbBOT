@@ -89,10 +89,32 @@ sudo apt install python3
 brew install python3
 ```
 
-Now we can install the required Python 3 packages for this project.
+If you already have `python3` installed, make sure your have the latest version of `pip3` installed. You can update your `pip3` installation as follows.
 
 ```bash
-pip3 install -r ./requirements.txt
+python3 -m pip install --user --upgrade pip
+```
+
+Before you install the required Python 3 packages, you can *optionally* create a virtual environment that will separate the installed packages from your main python installation. A virtual environment creates a local installation of Python, where the installed packages will be isolated from the packages installed by the main Python installation, which allows you to better keep track of what packages are used. This is recommended, especially if you are planning to help develop the bot. The package `venv` is shipped with Python 3.3 or later.
+
+To create a virtual environment, make sure you are in the `AbBOT` directory, then execute:
+
+```bash
+python3 -m venv .env
+```
+
+This creates a directory `AbBOT/.env`, which contains the virtual Python installation, and will not to uploaded to GitHub during commits. Then source the activate file to use the virtual environment.
+
+```bash
+source ./.env/bin/activate
+```
+
+To check that you are in virtual environment, the command `which python3` should return a path that ends in `.../AbBOT/.env/bin/python3`. Now you could install the required packages *inside* the virtual environment. To leave the virtual environment and return to your main Python installation, simply use `deactivate`.
+
+Now we can install the required Python 3 packages for this project, regardless of whether or not you are using `venv`.
+
+```bash
+python3 -m pip install -r ./requirements.txt
 ```
 
 #### Running the program
@@ -131,6 +153,8 @@ If you don't have `python3` or `pip3` installed you can either download the inst
 ```bash
 brew install python3
 ```
+
+You could also set up a virtual environment for OS X via `venv` using the same instructions as above in the Linux section.
 
 Now we can install the required Python 3 packages for this project.
 
